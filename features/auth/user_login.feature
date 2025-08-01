@@ -1,4 +1,4 @@
-Feature: User Authentication
+Feature: User Auth
   As a registered user
   I want to log in to the system
   So that I can access my account and manage my profile
