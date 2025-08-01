@@ -7,14 +7,14 @@ Feature: User Auth
     Given the application is running
     And I am on the login page
 
-  Scenario: Successful login with valid credentials
+  Scenario: Successful login with valid username and password
     When I enter "valid@example.com" in the email field
     And I enter "correctpassword" in the password field
     And I click the login button
     Then I should be redirected to the profile section
     And I should see a welcome message "Welcome back, John Doe!"
 
-  Scenario: Failed login with incorrect password
+  Scenario: Failed login with incorrect creds
     When I enter "valid@example.com" in the email field
     And I enter "wrongpassword" in the password field
     And I click the login button
