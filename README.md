@@ -107,24 +107,27 @@ set TESTCOLLAB_TOKEN=your_api_token_here
 
 ### CLI Usage Examples
 
-#### Option 1: Direct Node Execution (Recommended for Development)
+#### Option 1: From npx
 
-From the TestCollab CLI directory (cli2/), run:
 
 ```bash
 # Navigate to the demo project
 cd /path/to/testcollab-bdd-demo
 
 # Run initial sync
-node /path/to/cli2/src/index.js sync --project YOUR_PROJECT_ID
+npx testcollab-cli sync --project YOUR_PROJECT_ID
 
 # Example with specific API URL
-node /path/to/cli2/src/index.js sync --project 123 --api-url https://your-api.testcollab.io
+npx testcollab-cli sync --project YOUR_PROJECT_ID --api-url https://your-api.testcollab.io
 ```
 
-#### Option 2: Using npm link (Global CLI)
+#### Option 2: Installing as npm package
 
-If you've linked the CLI globally:
+If you've installed the CLI as global package:
+
+```bash
+npm install -g testcollab-cli
+```
 
 ```bash
 cd testcollab-bdd-demo
@@ -150,7 +153,7 @@ tc sync --project YOUR_PROJECT_ID
 
 3. **Sync Changes**: Run CLI again to sync the modifications
    ```bash
-   node /path/to/cli2/src/index.js sync --project YOUR_PROJECT_ID
+   tc sync --project YOUR_PROJECT_ID
    ```
 
 4. **Observe Results**: Check the CLI output for sync statistics

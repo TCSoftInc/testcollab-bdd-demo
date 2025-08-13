@@ -1,3 +1,21 @@
+### CLI Usage Examples
+
+#### Option 1: Direct Node Execution (Recommended for Development)
+
+From the TestCollab CLI directory (cli2/), run:
+
+```bash
+# Navigate to the demo project
+cd /path/to/testcollab-bdd-demo
+
+# Run initial sync
+node /path/to/cli2/src/index.js sync --project YOUR_PROJECT_ID
+
+# Example with specific API URL
+node /path/to/cli2/src/index.js sync --project 123 --api-url https://your-api.testcollab.io
+```
+
+
 ## Testing Different Scenarios
 
 ### 1. Content Changes
