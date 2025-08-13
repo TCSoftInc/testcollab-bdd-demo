@@ -5,10 +5,18 @@ This is a sample project demonstrating how to use the TestCollab CLI for Git-bas
 ## Project Overview
 
 This demo includes:
-- A simple single-page web application with login and profile management features
+- A simple single-page web application with login and profile management features (only for reference, no need to run it)
 - Gherkin feature files that describe the application's behavior using BDD syntax
 - A Git repository with proper commit history to demonstrate change detection
 - Complete instructions for using the TestCollab CLI with local development
+
+## Quickstart
+
+1. Fork this repo (recommended) or clone to your local machine.
+
+2. Create a new project on Test Collab and note the project ID. Locate your project ID in the TestCollab web UI:
+
+   ![Find your project ID](docs/project_id.png)
 
 ## Project Structure
 
@@ -34,19 +42,6 @@ The demo includes a simple web application with:
 - Basic session handling
 - Responsive design
 
-## BDD Features
-
-The project includes two main feature areas:
-
-### Authentication (features/auth/user_login.feature)
-- Successful login with valid credentials
-- Failed login scenarios (wrong password, non-existent user)
-- Form validation and error handling
-
-### Account Management (features/account/profile_management.feature)
-- Updating user profile information
-- Changing user password
-- Viewing profile details
 
 ## Using with TestCollab CLI
 
