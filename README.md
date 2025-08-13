@@ -18,6 +18,41 @@ This demo includes:
 
    ![Find your project ID](docs/project_id.png)
 
+3. Create a new API token that will be used to sync .feature files. Click on your user on top right > My profile settings > API token. Click on generate and copy the token.
+
+   ![Create new API token](docs/api_token.png)
+
+4. Go to your new forked / cloned repo and run this:
+
+   ```bash
+    export TESTCOLLAB_TOKEN=abcdef...
+    npx testcollab-cli sync --project {projectId}
+    ```
+
+You should see something like this:
+
+   ```bash
+   🔍 Fetching sync state from TestCollab...
+
+   📊 Last synced commit: none (initial sync)
+
+   📊 Current HEAD commit: 2d22cc08f26decc5732e3386b3ee61a206b5d3ac
+
+   🔍 Analyzing changes...
+
+   ...
+
+   🚀 Syncing with TestCollab...
+
+   📊 Synchronization Results:
+
+   ✅ Synchronization completed successfully
+   ```
+
+And if you go to your test cases page in project now, you should see all test cases and test suites created:
+
+![Synced project](docs/synced.png)
+
 ## Project Structure
 
 ```
@@ -34,16 +69,25 @@ testcollab-bdd-demo/
         └── profile_management.feature  # Profile management scenarios
 ```
 
-## Web Application Features
+To understand how the test suite tree is created, check out any feature file and compare that to above synced test case page screenshot.
 
-The demo includes a simple web application with:
-- User login form with validation
-- User profile management interface
-- Basic session handling
-- Responsive design
 
 
 ## Using with TestCollab CLI
+
+    ```bash
+    npx testcollab-cli --help
+    ```
+
+You can install it as global package:
+
+    ```bash
+    npm install -g testcollab-cli
+    tc --help
+    tc sync --project 1234
+    ```
+
+
 
 ### Prerequisites
 
@@ -148,90 +192,6 @@ tc sync --project YOUR_PROJECT_ID
 ✅ Synchronization completed successfully
 ```
 
-## Git Workflow Demonstration
-
-This project includes several commits that demonstrate different types of changes the CLI can handle:
-
-1. **Initial commit**: Basic project structure
-2. **Add features**: Initial feature files
-3. **Feature modifications**: Content changes to demonstrate updates
-4. **File renames**: Show rename detection capabilities
-
-### Example Git History
-
-```bash
-# View the commit history
-git log --oneline
-
-# Example output:
-def456 Update login error messages
-abc123 Add profile management features  
-789def Add initial authentication features
-456abc Initial project setup
-```
-
-## Testing Different Scenarios
-
-### 1. Content Changes
-Edit feature files and commit to test content synchronization:
-
-```bash
-# Edit a scenario
-vim features/auth/user_login.feature
-
-# Commit the change
-git add features/auth/user_login.feature
-git commit -m "Add new login validation scenario"
-
-# Sync with TestCollab
-node /path/to/cli2/src/index.js sync --project YOUR_PROJECT_ID
-```
-
-### 2. File Renames
-Test rename detection:
-
-```bash
-# Rename a feature file
-git mv features/auth/user_login.feature features/auth/authentication.feature
-git commit -m "Rename login feature file"
-
-# Sync to see rename detection
-node /path/to/cli2/src/index.js sync --project YOUR_PROJECT_ID
-```
-
-### 3. New Features
-Add new feature files:
-
-```bash
-# Create new feature
-mkdir -p features/settings
-echo 'Feature: User Settings...' > features/settings/preferences.feature
-git add features/settings/preferences.feature
-git commit -m "Add user settings feature"
-
-# Sync new feature
-node /path/to/cli2/src/index.js sync --project YOUR_PROJECT_ID
-```
-
-## Development Notes
-
-### Hash Calculation
-The CLI calculates SHA-1 hashes based on step content to track changes. This means:
-- Title changes don't affect hashes (renames are detected separately)
-- Step text changes create new hashes (triggering updates)
-- Background steps are included in feature hash calculation
-
-### Git Requirements
-- The CLI must run within a Git repository
-- Feature files should be committed to Git for change detection
-- Proper Git history is essential for diff-based synchronization
-
-### API Integration
-The CLI communicates with TestCollab via REST API:
-- `GET /bdd/sync?project=ID` - Fetch last synced commit
-- `POST /resolve-ids` - Map hashes to existing IDs
-- `POST /bdd/sync` - Send synchronization payload
-
 ## Troubleshooting
 
 ### Common Issues
@@ -254,14 +214,7 @@ The CLI communicates with TestCollab via REST API:
    - Check the API URL parameter
    - Ensure network connectivity
 
-### Debug Mode
 
-For troubleshooting, you can add debug logging to the CLI:
-
-```javascript
-// In cli2/src/commands/featuresync.js
-console.log('Debug: Processing change', change);
-```
 
 ## Next Steps
 
@@ -269,16 +222,11 @@ After running this demo:
 
 1. **Explore TestCollab**: Check your TestCollab project to see the synchronized suites and test cases
 2. **Customize Features**: Modify the feature files to match your application's requirements
-3. **Integrate CI/CD**: Add the CLI sync command to your continuous integration pipeline
-4. **Scale Up**: Apply the same patterns to your actual application's feature files
+3. **Integrate CI/CD**: Add the CLI sync command to your continuous integration pipeline. 
+[Integration with CI/CD pipelines &rarr;](https://github.com/TCSoftInc/testcollab-cli?tab=readme-ov-file#cicd-integration)
 
 ## Support
 
 For issues with the TestCollab CLI:
-- Check the CLI documentation: `cli2/README.md`
-- Review development notes: `cli2/DEV_NOTES.md`
-- Examine test scenarios: `cli2/tests/`
-
-For questions about BDD integration patterns:
-- Review integration documentation: `gherkin-docs/bdd-integration/`
-- Check scenario examples in the documentation
+- [CLI documentation](https://github.com/TCSoftInc/testcollab-cli?tab=readme-ov-file)
+- Support: support@testcollab.com
